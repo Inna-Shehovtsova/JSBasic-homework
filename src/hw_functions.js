@@ -2,7 +2,6 @@ export function sum(a, b) {
   return a + b;
 }
 export function mul(a, b) {
-  n
   return a * b;
 }
 export function strLengthSum(str1, str2) {
