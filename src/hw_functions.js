@@ -1,8 +1,8 @@
 export function sum(a, b) {
   return a + b;
 }
-export function mul(a   , b) {
-  q
+export function mul(a, b) {
+  q;
   return a * b;
 }
 export function strLengthSum(str1, str2) {
