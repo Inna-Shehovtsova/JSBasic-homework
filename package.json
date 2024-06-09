@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "prettier --check . && eslint .",
-    "lint:fix": "prettier --write . && eslint . --fix",
-    "prepare": "husky"
+     "prepare": "husky"
   },
   "repository": {
     "type": "git",
