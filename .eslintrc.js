@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'prettier',
   ],
   parserOptions: {
     sourseType: 'module',
