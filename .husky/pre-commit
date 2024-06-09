@@ -1,1 +1,1 @@
-npm test
+npm testnpx lint-staged
