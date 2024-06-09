@@ -2,18 +2,15 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    'jest/globals': true,
+    "jest/globals": true,
   },
-  extends: [
-    'airbnb-base',
-    'prettier',
-  ],
+  extends: ["airbnb-base", "prettier"],
   parserOptions: {
-    sourseType: 'module',
+    sourseType: "module",
   },
-  plugins: ['jest'],
+  plugins: ["jest"],
   rules: {
-    'linebreak-style': 'off',
-    'max-len': ['error', { ignoreComments: true }],
+    "linebreak-style": "off",
+    "max-len": ["error", { ignoreComments: true }],
   },
 };

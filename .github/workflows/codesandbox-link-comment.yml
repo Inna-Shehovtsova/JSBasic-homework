@@ -1,4 +1,4 @@
-name: Add codesandbox link 
+name: Add codesandbox link
 
 on:
   pull_request:
@@ -6,7 +6,6 @@ on:
   # https://github.com/mshick/add-pr-comment/issues/25
   pull_request_target:
     types: [opened]
-
 
 jobs:
   codesandbox-comment:
