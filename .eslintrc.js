@@ -4,7 +4,7 @@ module.exports = {
       es2021: true,
       "jest/globals": true,
     },
-    extends: ["airbnb-base", "airbnb"],
+    extends: ["airbnb-base", "airbnb",  "prettier"],
     parserOptions: {
       sourseType: "module",
     },
