@@ -1,18 +1,26 @@
 {
-  "name": "jsbasic-homework",
+  "name": "jsbasic-weather",
   "version": "1.0.0",
-  "description": "��R\u0000e\u0000a\u0000d\u0000m\u0000e\u0000\r\u0000 \u0000",
+  "description": "Educational project WEATHER",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Education",
+    "weater"
+  ],
+  "author": "Inna.Shehovtsova",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
+    "@eslint/js": "^9.4.0",
     "babel-jest": "^29.7.0",
+    "eslint": "^8.52.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-jest": "^28.6.0",
+    "globals": "^15.4.0",
     "jest": "^29.7.0"
   }
 }
