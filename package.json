@@ -8,9 +8,8 @@
     "lint": "prettier --check . && eslint .",
     "lint:fix": "prettier --write . && eslint . --fix",
     "prepare": "husky",
-    "serve": "webpack serve",
-    "build": "webpack",
-    "dev": "npx -y node-static src"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
   "keywords": [
     "Education",
