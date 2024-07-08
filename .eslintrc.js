@@ -14,5 +14,6 @@ module.exports = {
     "max-len": ["error", { ignoreComments: true }],
     "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-shadow": "off",
+    "import/extensions": "off",
   },
 };
