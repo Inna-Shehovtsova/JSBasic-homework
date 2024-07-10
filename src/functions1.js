@@ -29,10 +29,12 @@
 
 // ApiKey 31388c5842028e0b17906edf57971cc7
 // API call https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-
-export async function getWeater(cityName = "Moskow") {
-  const APIkey = "31388c5842028e0b17906edf57971cc7";
-  let url = "https://api.openweathermap.org/data/2.5/weather?q";
+export function ApiKeyF() {
+  return "31388c5842028e0b17906edf57971cc7";
+}
+export async function getWeather(cityName = "Moskow") {
+  const APIkey = ApiKeyF();
+  let url = "https://api.openweathermap.org/data/2.5/weather?q=";
   url += `${cityName}&appid=${APIkey}`;
   const response = await fetch(url);
   const jsonData = await response.json();
@@ -40,5 +42,39 @@ export async function getWeater(cityName = "Moskow") {
 }
 
 export function KToC(KTemp) {
-  return KTemp - 273.15;
+  return Math.round(KTemp - 273.15);
+}
+/**
+ * Функция должна отображать в элементе следующие данные
+ * - имя города
+ * - текущую температуру (main.temp)
+ * - иконку для погоды (одну или все - weather[index]icon)
+ *   (см https://openweathermap.org/weather-conditions#How-to-get-icon-URL)
+ *   например http://openweathermap.org/img/wn/10d@2x.png
+ *
+ *
+ */
+export function drawWeather(el, data) {
+  if (data == null || ("cod" in data && data.cod === "404")) {
+    el.innerHTML = `<div><p class="error">Ой, что-то пошло не так</p></div>`;
+  } else {
+    const name = data.hasOwnProperty("name") ? data.name : "Отсутствует";
+    const tempS =
+      data.hasOwnProperty("main") && data.main.hasOwnProperty("temp")
+        ? data.main.temp
+        : "-500";
+
+    const cityName = `<p class="city">${name}</p>`;
+    const temp = `<p class="ctemp">${KToC(tempS)}</p> `;
+    let wIco = null;
+    if (data.hasOwnProperty("weather")) wIco = data.weather[0];
+    let wImg = `<p class="cicon">`;
+    if (wIco.hasOwnProperty("icon")) {
+      wImg += `<img src="http://openweathermap.org/img/wn/`;
+      wImg += `${wIco.icon}@2x.png"/>`;
+    }
+    wImg += `</p>`;
+    el.innerHTML = `<div>${cityName}${temp}${wImg}</div>`;
+  }
+  return el;
 }

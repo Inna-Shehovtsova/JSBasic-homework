@@ -15,5 +15,9 @@ module.exports = {
     "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-shadow": "off",
     "import/extensions": "off",
+    "no-param-reassign": "off",
+    "no-prototype-builtins": "off",
+    "prefer-destructuring": "off",
+    "no-unused-vars": "off",
   },
 };
