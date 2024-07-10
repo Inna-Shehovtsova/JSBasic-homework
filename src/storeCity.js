@@ -8,7 +8,10 @@ export async function readList() {
   const key = getCityHistKey();
   let items = [];
   if (localStorage.getItem(key) !== "undefined")
-    items = localStorage.getItem(key).split(",");
+    items =
+      localStorage.getItem(key) == null
+        ? []
+        : localStorage.getItem(key).split(",");
 
   return items;
 }
