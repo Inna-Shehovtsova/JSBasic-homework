@@ -1,0 +1,93 @@
+(() => {
+  "use strict";
+  async function t(t = "Moskow") {
+    let e = "https://api.openweathermap.org/data/2.5/weather?q=";
+    e += `${t}&appid=31388c5842028e0b17906edf57971cc7`;
+    const n = await fetch(e);
+    return await n.json();
+  }
+  function e(t, e) {
+    try {
+      const c = e.name,
+        a = e.main.temp,
+        r = `<p class="city">${c}</p>`,
+        i = `<p class="ctemp">${((n = a), Math.round(n - 273.15))}</p> `,
+        o = e.weather[0];
+      let s = '<p class="cicon">';
+      o.hasOwnProperty("icon") &&
+        ((s += '<img src="http://openweathermap.org/img/wn/'),
+        (s += `${o.icon}@2x.png"/>`)),
+        (s += "</p>"),
+        (t.innerHTML = `<div>${r}${i}${s}</div>`);
+    } catch (e) {
+      t.innerHTML = '<div><p class="error">Ой, что-то пошло не так</p></div>';
+    }
+    var n;
+    return t;
+  }
+  async function n() {
+    const t = "cityHist";
+    let e = [];
+    return (
+      "undefined" !== localStorage.getItem(t) &&
+        (e = localStorage.getItem(t).split(",")),
+      e
+    );
+  }
+  function c(t, e) {
+    t.innerHTML = `<ul>${e.map((t) => `<li>${t}</li>`).join("")}</ul>`;
+  }
+  !(async function () {
+    const a = document.querySelector("form"),
+      r = (document.querySelector(".test"), document.querySelector(".history"));
+    let i = [];
+    (i = await n()),
+      c(r, i),
+      a.addEventListener("submit", async (a) =>
+        (async function (a) {
+          a.preventDefault();
+          const o = a.target.querySelector("input"),
+            s = o.value;
+          if (((o.value = ""), "" === s.trim())) return;
+          i.unshift(s),
+            (function (t) {
+              let e = t.reduce(
+                (t, e) => (t.find((t) => t === e) || t.push(e), t),
+                [],
+              );
+              e = e.slice(0, 10);
+              const n = e.join(",");
+              localStorage.setItem("cityHist", n);
+            })(i);
+          const u = await t(s);
+          e(document.querySelector(".weather-info"), u),
+            (i = await n()),
+            c(r, i),
+            r.querySelectorAll("li").forEach((n) =>
+              n.addEventListener("click", async (n) =>
+                (async function (n) {
+                  n.preventDefault(), n.target;
+                  const c = n.target.innerText;
+                  if ("" === c.trim()) return;
+                  const a = await t(c);
+                  e(document.querySelector(".weather-info"), a);
+                })(n),
+              ),
+            );
+        })(a),
+      ),
+      await (async function () {
+        let t = await (async function () {
+          let t = "";
+          try {
+            let e = "https://get.geojs.io/v1/ip/geo.json";
+            const n = await fetch(e);
+            t = (await n.json()).city;
+          } catch (t) {}
+          return t;
+        })();
+        (document.querySelector("input").value = t),
+          document.querySelector(".weather-button").click();
+      })();
+  })();
+})();

@@ -20,5 +20,6 @@ module.exports = {
     "prefer-destructuring": "off",
     "no-unused-vars": "off",
     "no-underscore-dangle": "off",
+    "import/prefer-default-export": "off",
   },
 };

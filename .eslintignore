@@ -2,3 +2,5 @@ node_modules
 /.husky
 /.git
 /.vscode
+/dist
+\dist\index.js

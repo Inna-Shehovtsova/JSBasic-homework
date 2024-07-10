@@ -1,11 +1,28 @@
 import { getWeather, drawWeather } from "./functions1.js";
 import { readList, saveList, drawList } from "./storeCity.js";
+import { getCity } from "./geoSome.js";
 
 (async function () {
   // Получаем указатели на нужные элементы
   const formEl = document.querySelector("form");
   const weatherInfoEl = document.querySelector(".test");
   const listEl = document.querySelector(".history");
+  // if (!navigator.geolocation) {
+  //  status.textContent = 'Ваш браузер не дружит с геолокацией...'
+  // } else {
+  //  navigator.geolocation.getCurrentPosition(success, error)
+  // }
+  // Если всё хорошо, собираем ссылку
+  // function success(position) {
+  //  const { longitude, latitude }  = position.coords
+
+  // map.src = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude}%2C${latitude}&amp;layer=mapnik`
+  // }
+
+  /// / Если всё плохо, просто напишем об этом
+  // function error() {
+  //  status.textContent = 'Не получается определить вашу геолокацию :('
+  // }
   let items = [];
   // Читаем список при старте
   // const
@@ -14,7 +31,7 @@ import { readList, saveList, drawList } from "./storeCity.js";
   drawList(listEl, items);
 
   function showWeather(el, weatherInfo) {
-    el.innerHTML = JSON.stringify(weatherInfo, null, 2);
+    // el.innerHTML = JSON.stringify(weatherInfo, null, 2);
   }
 
   async function onLiClick(ev) {
@@ -56,4 +73,10 @@ import { readList, saveList, drawList } from "./storeCity.js";
       .forEach((el) => el.addEventListener("click", async (e) => onLiClick(e)));
   }
   formEl.addEventListener("submit", async (ev) => onClick(ev));
+  async function firstGet() {
+    const city = await getCity();
+    document.querySelector("input").value = city;
+    document.querySelector(".weather-button").click();
+  }
+  await firstGet();
 })();
