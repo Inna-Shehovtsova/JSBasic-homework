@@ -1,3 +1,5 @@
+![example workflow](https://github.com/Inna-Shehovtsova/JSBasic-homework/actions/workflows/sanity-check.yml/badge.svg)
+![example event parameter](https://github.com/Inna-Shehovtsova/JSBasic-homework/actions/workflows/deploy-gh-pages.yml/badge.svg?event=push)
 ---
 Зачем: Учусь делать сайты с JS.
 ---
