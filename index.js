@@ -17,7 +17,20 @@ import { readList, saveList, drawList } from "./storeCity.js";
     el.innerHTML = JSON.stringify(weatherInfo, null, 2);
   }
 
-  formEl.addEventListener("submit", async (ev) => {
+  async function onLiClick(ev) {
+    // чтобы не перезагружать страницу
+    ev.preventDefault();
+
+    // читаем значение из формы
+    const formElement = ev.target;
+    const cityName = ev.target.innerText;
+    if (cityName.trim() === "") return;
+    const weather = await getWeather(cityName);
+    showWeather(weatherInfoEl, weather);
+    drawWeather(document.querySelector(".weather-info"), weather);
+  }
+
+  async function onClick(ev) {
     // чтобы не перезагружать страницу
     ev.preventDefault();
 
@@ -25,8 +38,10 @@ import { readList, saveList, drawList } from "./storeCity.js";
     const formElement = ev.target;
     const inputEl = formElement.querySelector("input");
     const cityName = inputEl.value;
-    if (cityName.trim() === "") return;
     inputEl.value = "";
+
+    if (cityName.trim() === "") return;
+
     items.unshift(cityName);
     saveList(items);
     const weather = await getWeather(cityName);
@@ -36,5 +51,9 @@ import { readList, saveList, drawList } from "./storeCity.js";
     // обновляем список
     items = await readList();
     drawList(listEl, items);
-  });
+    listEl
+      .querySelectorAll("li")
+      .forEach((el) => el.addEventListener("click", async (e) => onLiClick(e)));
+  }
+  formEl.addEventListener("submit", async (ev) => onClick(ev));
 })();
