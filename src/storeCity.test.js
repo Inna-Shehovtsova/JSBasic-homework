@@ -102,6 +102,12 @@ describe("Storage test", () => {
     expect(items[10]).toBe(undefined);
   });
 
+  it("Local storage", async () => {
+    const items = await readList();
+
+    expect(items.length).toBe(0);
+  });
+
   it("Local storage", () => {
     const VALUE = "London";
     const arr = [
