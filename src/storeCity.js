@@ -7,12 +7,11 @@ export function getCityHistKey() {
 export async function readList() {
   const key = getCityHistKey();
   let items = [];
-  if (localStorage.getItem(key) !== "undefined")
-    items =
-      localStorage.getItem(key) == null
-        ? []
-        : localStorage.getItem(key).split(",");
-
+  try {
+    items = localStorage.getItem(key).split(",");
+  } catch (error) {
+    items = [];
+  }
   return items;
 }
 
