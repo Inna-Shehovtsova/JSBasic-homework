@@ -17,7 +17,7 @@ import { readList, saveList, drawList } from "./storeCity.js";
     el.innerHTML = JSON.stringify(weatherInfo, null, 2);
   }
 
-  async function liClick(ev) {
+  async function onLiClick(ev) {
     // чтобы не перезагружать страницу
     ev.preventDefault();
 
@@ -53,7 +53,7 @@ import { readList, saveList, drawList } from "./storeCity.js";
     drawList(listEl, items);
     listEl
       .querySelectorAll("li")
-      .forEach((el) => el.addEventListener("click", async (e) => liClick(e)));
+      .forEach((el) => el.addEventListener("click", async (e) => onLiClick(e)));
   }
   formEl.addEventListener("submit", async (ev) => onClick(ev));
 })();
