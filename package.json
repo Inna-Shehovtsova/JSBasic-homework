@@ -8,9 +8,8 @@
     "lint": "prettier --check . && eslint .",
     "lint:fix": "prettier --write . && eslint . --fix",
     "prepare": "husky",
-    "start": "webpack ",
-    "build": "webpack",
-    "dev": "npx -y node-static src"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
   "keywords": [
     "Education",
@@ -23,6 +22,7 @@
     "@babel/preset-env": "^7.24.7",
     "@eslint/js": "^9.4.0",
     "babel-jest": "^29.7.0",
+    "copy-webpack-plugin": "^12.0.2",
     "env": "^0.0.2",
     "eslint": "^8.52.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -35,7 +35,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
   "lint-staged": {
     "*.js": "eslint --fix",

@@ -2,8 +2,6 @@ name: Deploy to GithubPages
 
 on:
   push:
-    branches:
-      - dev-hw2
 
 jobs:
   deploy:
@@ -13,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install dependences
+        run: |
+          npm install
       - name: Build
         run: |
           mkdir dist
