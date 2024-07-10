@@ -15,20 +15,18 @@ export async function readList() {
 
 // Сохраняет список
 export function saveList(items) {
-  items = items.reduce(
-    (accumul, curr) =>
-      accumul.find((el) => el === curr) ? accumul : accumul.push(curr),
-    [],
-  );
-  while (items.lenght > 10) {
-    items.shift();
-  }
-  const strItem = items.join(",");
+  let inner = items.reduce((a, c) => {
+    if (!a.find((e) => e === c)) a.push(c);
+    return a;
+  }, []);
+
+  inner = inner.slice(0, 10);
+  const strItem = inner.join(",");
   localStorage.setItem(getCityHistKey(), strItem);
 }
 
 export function drawList(el, items) {
-  el.innerHTML = `<ol>${items.map((el) => `<li>${el}</li>`).join("")}</ol>`;
+  el.innerHTML = `<ul>${items.map((el) => `<li>${el}</li>`).join("")}</ul>`;
 }
 
 /*  // Получаем указатели на нужные элементы

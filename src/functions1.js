@@ -55,19 +55,14 @@ export function KToC(KTemp) {
  *
  */
 export function drawWeather(el, data) {
-  if (data == null || ("cod" in data && data.cod === "404")) {
-    el.innerHTML = `<div><p class="error">Ой, что-то пошло не так</p></div>`;
-  } else {
-    const name = data.hasOwnProperty("name") ? data.name : "Отсутствует";
-    const tempS =
-      data.hasOwnProperty("main") && data.main.hasOwnProperty("temp")
-        ? data.main.temp
-        : "-500";
+  // console.log(data);
+  try {
+    const name = data.name;
+    const tempS = data.main.temp;
 
     const cityName = `<p class="city">${name}</p>`;
     const temp = `<p class="ctemp">${KToC(tempS)}</p> `;
-    let wIco = null;
-    if (data.hasOwnProperty("weather")) wIco = data.weather[0];
+    const wIco = data.weather[0];
     let wImg = `<p class="cicon">`;
     if (wIco.hasOwnProperty("icon")) {
       wImg += `<img src="http://openweathermap.org/img/wn/`;
@@ -75,6 +70,8 @@ export function drawWeather(el, data) {
     }
     wImg += `</p>`;
     el.innerHTML = `<div>${cityName}${temp}${wImg}</div>`;
+  } catch (error) {
+    el.innerHTML = `<div><p class="error">Ой, что-то пошло не так</p></div>`;
   }
   return el;
 }

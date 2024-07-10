@@ -19,5 +19,6 @@ module.exports = {
     "no-prototype-builtins": "off",
     "prefer-destructuring": "off",
     "no-unused-vars": "off",
+    "no-underscore-dangle": "off",
   },
 };
