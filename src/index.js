@@ -75,8 +75,13 @@ import { getCity } from "./geoSome.js";
   formEl.addEventListener("submit", async (ev) => onClick(ev));
   async function firstGet() {
     const city = await getCity();
-    document.querySelector("input").value = city;
-    document.querySelector(".weather-button").click();
+    // document.querySelector("input").value = city;
+    // document.querySelector(".weather-button").click();
+    const weather = await getWeather(city);
+    const weatherInfo = document.querySelector(".test");
+
+    showWeather(weatherInfo, weather);
+    drawWeather(document.querySelector(".weather-info"), weather);
   }
   await firstGet();
 })();
