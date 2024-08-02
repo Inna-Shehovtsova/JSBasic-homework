@@ -32,13 +32,39 @@
 export function ApiKeyF() {
   return "31388c5842028e0b17906edf57971cc7";
 }
+
+export const weatherDataObj = {
+  temp: 0,
+  cityName: "",
+  lat: 0,
+  lon: 0,
+  img: "",
+  error: 0,
+};
+
 export async function getWeather(cityName = "Moskow") {
   const APIkey = ApiKeyF();
-  let url = "https://api.openweathermap.org/data/2.5/weather?q=";
-  url += `${cityName}&appid=${APIkey}`;
-  const response = await fetch(url);
-  const jsonData = await response.json();
-  return jsonData;
+  const weather = Object.create(weatherDataObj);
+  try {
+    let url = "https://api.openweathermap.org/data/2.5/weather?q=";
+    url += `${cityName}&appid=${APIkey}`;
+    const response = await fetch(url);
+    let data = await response.json();
+
+    if ("data" in data) data = JSON.parse(data.data);
+
+    weather.temp = data.main.temp;
+    weather.cityName = data.name;
+    weather.img = `http://openweathermap.org/img/wn/`;
+    weather.img += `${data.weather[0].icon}@2x.png`;
+    weather.lon = data.coord.lon;
+    weather.lat = data.coord.lat;
+    weather.error = 0;
+  } catch (error) {
+    // console.log("ERROR!  ", error);
+    weather.error = 1;
+  }
+  return weather;
 }
 
 export function KToC(KTemp) {
@@ -55,22 +81,22 @@ export function KToC(KTemp) {
  *
  */
 export function drawWeather(el, data) {
-  // console.log(data);
-  try {
-    const name = data.name;
-    const tempS = data.main.temp;
+  // console.log("drawWeather", data);
+  if (data.error === 0) {
+    const name = data.cityName;
+    const tempS = data.temp;
 
     const cityName = `<p class="city">${name}</p>`;
     const temp = `<p class="ctemp">${KToC(tempS)}</p> `;
-    const wIco = data.weather[0];
+
     let wImg = `<p class="cicon">`;
-    if (wIco.hasOwnProperty("icon")) {
-      wImg += `<img src="http://openweathermap.org/img/wn/`;
-      wImg += `${wIco.icon}@2x.png"/>`;
-    }
+
+    wImg += `<img src="${data.img}"/>`;
+
     wImg += `</p>`;
+
     el.innerHTML = `<div>${cityName}${temp}${wImg}</div>`;
-  } catch (error) {
+  } else {
     el.innerHTML = `<div><p class="error">Ой, что-то пошло не так</p></div>`;
   }
   return el;

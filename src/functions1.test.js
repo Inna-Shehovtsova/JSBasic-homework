@@ -1,4 +1,4 @@
-import { KToC, getWeather, drawWeather } from "./functions1.js";
+import { KToC, getWeather, drawWeather, weatherDataObj } from "./functions1.js";
 
 function setupFetchStub(data) {
   return function fetchStub(_url) {
@@ -73,6 +73,17 @@ const mockretVal = ` {
 
 const mockBadVal = '{ "cod": "404", "message": "city not found" }';
 
+const weatherObjGood = Object.create(weatherDataObj);
+Object.assign(weatherObjGood, {
+  temp: 280.32,
+  cityName: "London",
+  lat: 51.51,
+  lon: -0.13,
+  img: "http://openweathermap.org/img/wn/09d@2x.png",
+  error: 0,
+});
+const weatherObjBad = Object.create(weatherDataObj);
+Object.assign(weatherObjBad, { error: 1 });
 describe("Get weater", () => {
   it("to be function", () => {
     expect(getWeather).toBeInstanceOf(Function);
@@ -80,18 +91,19 @@ describe("Get weater", () => {
   it("MOck get weater", async () => {
     global.fetch = jest.fn().mockImplementation(setupFetchStub(mockretVal));
     const weather = await getWeather("London");
-    expect(JSON.parse(weather.data)).toStrictEqual(JSON.parse(mockretVal));
+    // console.log(weather);
+    expect(weather).toStrictEqual(weatherObjGood);
     global.fetch.mockClear();
     delete global.fetch;
   });
 });
-describe("draw weater", () => {
+describe("draw good weater", () => {
   it("to be function", () => {
     expect(drawWeather).toBeInstanceOf(Function);
   });
-  it("draw", () => {
+  it("draw good some", () => {
     const divApp = document.createElement("div");
-    drawWeather(divApp, JSON.parse(mockretVal));
+    drawWeather(divApp, weatherObjGood);
     const city = divApp.querySelector(".city");
     expect(city).toBeTruthy();
     expect(city.innerHTML).toBe("London");
@@ -105,7 +117,7 @@ describe("draw weater", () => {
   });
   it("draw bad city", () => {
     const divApp = document.createElement("div");
-    drawWeather(divApp, JSON.parse(mockBadVal));
+    drawWeather(divApp, weatherObjBad);
     const city = divApp.querySelector(".city");
     expect(city).toBeFalsy();
 
