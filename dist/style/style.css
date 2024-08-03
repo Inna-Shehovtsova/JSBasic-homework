@@ -1,0 +1,19 @@
+.s1 {
+  text-align: left;
+  padding: 30px;
+}
+.history {
+  float: right;
+  width: 33.33%;
+  padding: 10px;
+}
+.mapImage {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+.weater-info {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
