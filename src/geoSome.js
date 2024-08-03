@@ -10,3 +10,8 @@ export async function getCity() {
   }
   return city;
 }
+export function getMapUrl(data) {
+  let url = `https://static.maps.2gis.com/1.0?s=280x250&c=`;
+  url += `${data.lat},${data.lon}&z=12`;
+  return url;
+}

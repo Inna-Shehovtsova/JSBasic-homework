@@ -101,3 +101,6 @@ export function drawWeather(el, data) {
   }
   return el;
 }
+export function drawMap(el, imgSrc) {
+  el.innerHTML = `<img src="${imgSrc}" />`;
+}

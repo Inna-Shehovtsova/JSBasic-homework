@@ -1,6 +1,6 @@
-import { getWeather, drawWeather } from "./functions1.js";
+import { getWeather, drawWeather, drawMap } from "./functions1.js";
 import { readList, saveList, drawList } from "./storeCity.js";
-import { getCity } from "./geoSome.js";
+import { getCity, getMapUrl } from "./geoSome.js";
 
 (async function () {
   // Получаем указатели на нужные элементы
@@ -45,6 +45,7 @@ import { getCity } from "./geoSome.js";
     const weather = await getWeather(cityName);
     showWeather(weatherInfoEl, weather);
     drawWeather(document.querySelector(".weather-info"), weather);
+    drawMap(document.querySelector(".mapImage"), getMapUrl(weather));
   }
 
   async function onClick(ev) {
@@ -65,6 +66,8 @@ import { getCity } from "./geoSome.js";
 
     showWeather(weatherInfoEl, weather);
     drawWeather(document.querySelector(".weather-info"), weather);
+    drawMap(document.querySelector(".mapImage"), getMapUrl(weather));
+
     // обновляем список
     items = await readList();
     drawList(listEl, items);
@@ -82,6 +85,8 @@ import { getCity } from "./geoSome.js";
 
     showWeather(weatherInfo, weather);
     drawWeather(document.querySelector(".weather-info"), weather);
+
+    drawMap(document.querySelector(".mapImage"), getMapUrl(weather));
   }
   await firstGet();
 })();
