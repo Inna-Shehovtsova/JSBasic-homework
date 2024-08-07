@@ -1,6 +1,7 @@
 import { getWeather, drawWeather, drawMap } from "./functions1.js";
 import { readList, saveList, drawList } from "./storeCity.js";
 import { getCity, getMapUrl } from "./geoSome.js";
+import { SliderPlugin } from "./sliderPlugin.js";
 
 (async function () {
   // Получаем указатели на нужные элементы
@@ -29,6 +30,10 @@ import { getCity, getMapUrl } from "./geoSome.js";
   items = await readList();
   // и отрисовываем список
   drawList(listEl, items);
+
+  // add plugin
+  const element = document.querySelector(".slider-plugin");
+  const slider = new SliderPlugin(element, null);
 
   function showWeather(el, weatherInfo) {
     // el.innerHTML = JSON.stringify(weatherInfo, null, 2);
@@ -88,5 +93,6 @@ import { getCity, getMapUrl } from "./geoSome.js";
 
     drawMap(document.querySelector(".mapImage"), getMapUrl(weather));
   }
+
   await firstGet();
 })();

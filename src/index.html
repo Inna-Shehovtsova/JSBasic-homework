@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Погода</title>
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" type="text/css" href="./style/style.css" />
+    <!-- Add plugin -->
+    <link rel="stylesheet" type="text/css" href="./style/slider_plugin.css" />
   </head>
   <body>
     <h1>Прогноз погоды</h1>
@@ -20,12 +22,13 @@
     <div class="test"></div>
     <div class="weather-info"></div>
     <div class="slider-plugin">
-      <ul class="slider-frame">
-        <li class="slider-item"><img ="./img/IMG_2326.jpg" /></li>
-        <li class="slider-item"><img ="./img/IMG_2331.jpg" /></li>
-        <li class="slider-item"><img ="./img/IMG_2340.jpg" /></li>
+      <ul>
+        <li><img src="./img/IMG_2326.jpg" width="100" height="200" /></li>
+        <li><img src="./img/IMG_2331.jpg" width="100" height="200" /></li>
+        <li><img src="./img/IMG_2340.jpg" width="100" height="200" /></li>
       </ul>
     </div>
+
     <script type="module" src="index.js"></script>
   </body>
 </html>

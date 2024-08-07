@@ -1,0 +1,7 @@
+.slider-item-visible {
+  display: list-item;
+}
+
+.slider-item-invisible {
+  display: none;
+}
