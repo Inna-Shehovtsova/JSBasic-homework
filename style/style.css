@@ -25,3 +25,8 @@
   border: 1px;
   border-radius: 3px;
 }
+.weater-info-item {
+  font: bold;
+  font-size: small;
+  font-family: "Courier New", Courier, monospace;
+}
