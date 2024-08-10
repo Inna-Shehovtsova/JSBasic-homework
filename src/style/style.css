@@ -25,9 +25,3 @@
   border: 1px;
   border-radius: 3px;
 }
-.slider-plugin {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-  align-items: center;
-}
