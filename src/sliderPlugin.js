@@ -70,6 +70,8 @@ export function SliderPlugin(element, options) {
   }
 
   sliderPluginEnhancer(element);
+  this.left = left;
+  this.right = right;
 }
 /**/
 /* Критерии оценки:
