@@ -28,7 +28,9 @@ export function saveList(items) {
 }
 
 export function drawList(el, items) {
-  el.innerHTML = `<ul>${items.map((el) => `<li>${el}</li>`).join("")}</ul>`;
+  el.innerHTML = `<ul>${items
+    .map((el) => `<li class="weater-info-item">${el}</li>`)
+    .join("")}</ul>`;
 }
 
 /*  // Получаем указатели на нужные элементы

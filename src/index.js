@@ -58,6 +58,10 @@ import { SliderPlugin } from "./sliderPlugin.js";
     drawMap(document.querySelector(".mapImage"), getMapUrl(weather));
   }
 
+  listEl
+    .querySelectorAll(".weater-info-item")
+    .forEach((el) => el.addEventListener("click", async (e) => onLiClick(e)));
+
   async function onClick(ev) {
     // чтобы не перезагружать страницу
     ev.preventDefault();
@@ -82,7 +86,7 @@ import { SliderPlugin } from "./sliderPlugin.js";
     items = await readList();
     drawList(listEl, items);
     listEl
-      .querySelectorAll("li")
+      .querySelectorAll(".weater-info-item")
       .forEach((el) => el.addEventListener("click", async (e) => onLiClick(e)));
   }
   formEl.addEventListener("submit", async (ev) => onClick(ev));
