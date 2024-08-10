@@ -34,7 +34,12 @@ import { SliderPlugin } from "./sliderPlugin.js";
   // add plugin
   const element = document.querySelector(".slider-plugin");
   const slider = new SliderPlugin(element, null);
-
+  document.querySelector(".arrow_left").addEventListener("click", () => {
+    slider.left();
+  });
+  document.querySelector(".arrow_right").addEventListener("click", () => {
+    slider.right();
+  });
   function showWeather(el, weatherInfo) {
     // el.innerHTML = JSON.stringify(weatherInfo, null, 2);
   }

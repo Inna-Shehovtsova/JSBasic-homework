@@ -5,3 +5,22 @@
 .slider-item-invisible {
   display: none;
 }
+
+.arrow {
+  position: static;
+  display: block;
+  top: 50%;
+}
+
+.arrow:hower {
+  display: block;
+  background: #000;
+}
+
+.arrow_left {
+  left: 10%;
+}
+
+.arrow_right {
+  right: 10%;
+}
