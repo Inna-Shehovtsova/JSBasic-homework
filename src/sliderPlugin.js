@@ -4,12 +4,12 @@ export function SliderPlugin(element, options) {
     const liNodeList = ulEl.querySelectorAll("li");
     ulEl.classList.add("slider-frame");
     for (let i = 0; i < liNodeList.length; i++) {
+      liNodeList[i].classList.add("liststyle");
       if (i === 0) {
         liNodeList[i].classList.add("slider-item-visible");
       } else {
         liNodeList[i].classList.add("slider-item-invisible");
       }
-      liNodeList[i].classList.add("ul.liststyle");
     }
     const arrowRight = document.createElement("a");
     arrowRight.innerHTML = `<img src="./img/ar_right.gif"/>`;
