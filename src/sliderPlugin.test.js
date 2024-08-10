@@ -45,10 +45,14 @@ describe("Storage test", () => {
     const slider = new SliderPlugin(el, null);
     const ulEl = el.querySelector("ul");
     expect(ulEl.classList.contains("slider-frame")).toBeTruthy();
-    const nodeList = ulEl.querySelectorAll("a");
-    for (let i = 0; i < nodeList.length; i++) {
+    expect(el.querySelector("a")).toBeTruthy();
+    expect(el.querySelector("a").classList.contains("arrow")).toBeTruthy();
+    const nodeList = el.querySelectorAll("a");
+    const nodeListLength = nodeList.length;
+    for (let i = 0; i < nodeListLength; i++) {
       expect(nodeList[i].classList.contains("arrow")).toBeTruthy();
     }
+    expect(nodeListLength).toEqual(2);
   });
   it("to carousel", () => {
     let el = document.createElement("div");
