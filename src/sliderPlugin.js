@@ -1,4 +1,44 @@
 export function SliderPlugin(element, options) {
+  function left() {
+    const liNodeList = element.querySelectorAll("li");
+    for (let i = 0; i < liNodeList.length; i++) {
+      if (liNodeList[i].classList.contains("slider-item-visible")) {
+        liNodeList[i].classList.replace(
+          "slider-item-visible",
+          "slider-item-invisible",
+        );
+        i -= 1;
+        if (i < 0) {
+          i = liNodeList.length - 1;
+        }
+        liNodeList[i].classList.replace(
+          "slider-item-invisible",
+          "slider-item-visible",
+        );
+        break;
+      }
+    }
+  }
+  function right() {
+    const liNodeList = element.querySelectorAll("li");
+    for (let i = 0; i < liNodeList.length; i++) {
+      if (liNodeList[i].classList.contains("slider-item-visible")) {
+        liNodeList[i].classList.replace(
+          "slider-item-visible",
+          "slider-item-invisible",
+        );
+        i += 1;
+        if (i >= liNodeList.length) {
+          i = 0;
+        }
+        liNodeList[i].classList.replace(
+          "slider-item-invisible",
+          "slider-item-visible",
+        );
+        break;
+      }
+    }
+  }
   function sliderPluginEnhancer(element) {
     const ulEl = element.querySelector("ul");
     const liNodeList = ulEl.querySelectorAll("li");
@@ -21,49 +61,15 @@ export function SliderPlugin(element, options) {
     arrowLeft.classList.add("arrow_left");
     element.insertAdjacentElement("afterbegin", arrowLeft);
     element.insertAdjacentElement("beforeend", arrowRight);
+    arrowLeft.addEventListener("click", () => {
+      left();
+    });
+    arrowRight.addEventListener("click", () => {
+      right();
+    });
   }
 
   sliderPluginEnhancer(element);
-  this.left = () => {
-    const liNodeList = element.querySelectorAll("li");
-    for (let i = 0; i < liNodeList.length; i++) {
-      if (liNodeList[i].classList.contains("slider-item-visible")) {
-        liNodeList[i].classList.replace(
-          "slider-item-visible",
-          "slider-item-invisible",
-        );
-        i -= 1;
-        if (i < 0) {
-          i = liNodeList.length - 1;
-        }
-        liNodeList[i].classList.replace(
-          "slider-item-invisible",
-          "slider-item-visible",
-        );
-        break;
-      }
-    }
-  };
-  this.right = () => {
-    const liNodeList = element.querySelectorAll("li");
-    for (let i = 0; i < liNodeList.length; i++) {
-      if (liNodeList[i].classList.contains("slider-item-visible")) {
-        liNodeList[i].classList.replace(
-          "slider-item-visible",
-          "slider-item-invisible",
-        );
-        i += 1;
-        if (i >= liNodeList.length) {
-          i = 0;
-        }
-        liNodeList[i].classList.replace(
-          "slider-item-invisible",
-          "slider-item-visible",
-        );
-        break;
-      }
-    }
-  };
 }
 /**/
 /* Критерии оценки:
