@@ -12,15 +12,31 @@
   top: 50%;
 }
 
-.arrow:hower {
+.arrow:hover {
   display: block;
-  background: #000;
+  background: #615858;
+}
+.arrow:active {
+  display: block;
+  background: #454343;
 }
 
 .arrow_left {
-  left: 10%;
+  color: white;
 }
 
 .arrow_right {
-  right: 10%;
+  color: white;
+}
+
+.slider-plugin {
+  display: flex;
+  flex-direction: row;
+  padding: 1px;
+  align-items: center;
+}
+
+.slider-frame {
+  padding-left: 0px;
+  list-style-type: none;
 }
