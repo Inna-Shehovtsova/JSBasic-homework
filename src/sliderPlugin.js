@@ -43,7 +43,8 @@ export function SliderPlugin(element, options) {
     const ulEl = element.querySelector("ul");
     const liNodeList = ulEl.querySelectorAll("li");
     ulEl.classList.add("slider-frame");
-    const firstElShowNumber = options.fistNumber ? 0 : options.fistNumber;
+    let firstElShowNumber = options.fistNumber ? 0 : options.fistNumber;
+    if (firstElShowNumber > liNodeList.length) firstElShowNumber = 0;
     for (let i = 0; i < liNodeList.length; i++) {
       liNodeList[i].classList.add("liststyle");
       if (i === firstElShowNumber) {
