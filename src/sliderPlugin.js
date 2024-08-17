@@ -51,22 +51,24 @@ export function SliderPlugin(element, options) {
         liNodeList[i].classList.add("slider-item-invisible");
       }
     }
-    const arrowRight = document.createElement("a");
-    arrowRight.innerHTML = `<img src="./img/ar_right.gif"/>`;
-    arrowRight.classList.add("arrow");
-    arrowRight.classList.add("arrow_right");
-    const arrowLeft = document.createElement("a");
-    arrowLeft.innerHTML = `<img src="./img/ar_left.gif"/>`;
-    arrowLeft.classList.add("arrow");
-    arrowLeft.classList.add("arrow_left");
-    element.insertAdjacentElement("afterbegin", arrowLeft);
-    element.insertAdjacentElement("beforeend", arrowRight);
-    arrowLeft.addEventListener("click", () => {
-      left();
-    });
-    arrowRight.addEventListener("click", () => {
-      right();
-    });
+    if (!element.querySelector(".arrow")) {
+      const arrowRight = document.createElement("a");
+      arrowRight.innerHTML = `<img src="./img/ar_right.gif"/>`;
+      arrowRight.classList.add("arrow");
+      arrowRight.classList.add("arrow_right");
+      const arrowLeft = document.createElement("a");
+      arrowLeft.innerHTML = `<img src="./img/ar_left.gif"/>`;
+      arrowLeft.classList.add("arrow");
+      arrowLeft.classList.add("arrow_left");
+      element.insertAdjacentElement("afterbegin", arrowLeft);
+      element.insertAdjacentElement("beforeend", arrowRight);
+      arrowLeft.addEventListener("click", () => {
+        left();
+      });
+      arrowRight.addEventListener("click", () => {
+        right();
+      });
+    }
   }
 
   sliderPluginEnhancer(element);
