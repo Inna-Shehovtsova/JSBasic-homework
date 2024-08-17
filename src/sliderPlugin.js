@@ -39,13 +39,14 @@ export function SliderPlugin(element, options) {
       }
     }
   }
-  function sliderPluginEnhancer(element) {
+  function sliderPluginEnhancer(element, options = { fistNumber: 0 }) {
     const ulEl = element.querySelector("ul");
     const liNodeList = ulEl.querySelectorAll("li");
     ulEl.classList.add("slider-frame");
+    const firstElShowNumber = options.fistNumber ? 0 : options.fistNumber;
     for (let i = 0; i < liNodeList.length; i++) {
       liNodeList[i].classList.add("liststyle");
-      if (i === 0) {
+      if (i === firstElShowNumber) {
         liNodeList[i].classList.add("slider-item-visible");
       } else {
         liNodeList[i].classList.add("slider-item-invisible");
