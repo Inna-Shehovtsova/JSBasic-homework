@@ -1,0 +1,32 @@
+.s1 {
+  text-align: left;
+  padding: 30px;
+}
+.promo_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (min-width: 1000px) {
+  .promo_wrap {
+    flex-direction: row;
+  }
+}
+.history {
+  border: 1px;
+  border-radius: 3px;
+}
+.mapImage {
+  border: 1px;
+  border-radius: 3px;
+}
+.weater-info {
+  border: 1px;
+  border-radius: 3px;
+}
+.weater-info-item {
+  font: bold;
+  font-size: small;
+  font-family: "Courier New", Courier, monospace;
+}

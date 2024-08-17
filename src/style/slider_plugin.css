@@ -1,0 +1,42 @@
+.slider-item-visible {
+  display: list-item;
+}
+
+.slider-item-invisible {
+  display: none;
+}
+
+.arrow {
+  position: static;
+  display: block;
+  top: 50%;
+}
+
+.arrow:hover {
+  display: block;
+  background: #615858;
+}
+.arrow:active {
+  display: block;
+  background: #454343;
+}
+
+.arrow_left {
+  color: white;
+}
+
+.arrow_right {
+  color: white;
+}
+
+.slider-plugin {
+  display: flex;
+  flex-direction: row;
+  padding: 1px;
+  align-items: center;
+}
+
+.slider-frame {
+  padding-left: 0px;
+  list-style-type: none;
+}
